@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    $('UL INPUT:checkbox').change(function (e) {
+    $('UL LI INPUT:checkbox').change(() => {
+        let storeAmenity = dict()
         if ($(this).is(':checked')) {
-            alert('checked');
-        }
-        else {
+            storeAmenity[$(this).attr('data-id')] = $(this).attr('data-name');
+        } else {
             alert('unchecked');
         }
     });
