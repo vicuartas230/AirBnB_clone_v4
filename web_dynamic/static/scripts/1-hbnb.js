@@ -1,19 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
     const storeAmenity = {};
-    const listStore = [];
+    const listStore = Array();
     let idx;
     $('UL LI INPUT:checkbox').change(function () { // ("input[type=checkbox]")
         if ($(this).is(':checked')) {
             storeAmenity[$(this).attr('data-id')] = $(this).attr('data-name'); // or .data('name')
-            listStore.push(Object.values(storeAmenity));
-            //alert('hola');
+            listStore.push(Object.values(storeAmenity)[0]);
         } else {
-            console.log(listStore)
-            idx = listStore.indexOf('Iron');
-            console.log(idx)
-            delete listStore[idx];
+            idx = listStore.indexOf($(this).attr('data-name'));
+            listStore.splice(idx, 1);
         }
-        //$('.amenities H4').text('hola')
-        $('.amenities H4').text(listStore);
+        $('.amenities H4').html(listStore.join(', '));
     });
 });
