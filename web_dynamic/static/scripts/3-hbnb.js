@@ -22,19 +22,29 @@ document.addEventListener('DOMContentLoaded', function () {
     );
     $.ajax({
         type: "POST",
-        url: "http://0.0.0.0:5001/api/v1/places_search/",
+        url: "http://172.28.253.12:5001/api/v1/places_search/",
         data: JSON.stringify({}),
         contentType: "application/json",
         dataType: "json",
         success: function (data) {
+            console.log(data);
             $.each(data, function (indexInArray, valueOfElement) {
-                $('section.places').append('<article></article>');
-                $('section.places article').append('<div></div>');
-                $('section.places article div').addClass('title_box');
-                $('section.places article div.title_box').append('<h2>' + data[indexInArray].name + '</h2>');
-                $('section.places article div.title_box').append('<div></div>');
-                $('section.places article div.title_box div').addClass('price_by_night');
-                $('.price_by_night').append(data[indexInArray].price_by_night);
+                (data[indexInArray].max_guest !== 1) ? a = ' Guests' : a = ' Guest';
+                (data[indexInArray].number_rooms !== 1) ? b = ' Bedrooms' : b = ' Bedroom';
+                (data[indexInArray].number_bathrooms !== 1) ? c = ' Bathrooms' : c = ' Bathroom';
+                $('section.places').append(
+                    '<article>\
+                        <div class="title_box">\
+                            <h2>' + data[indexInArray].name + '</h2>\
+                            <div class="price_by_night">$' + data[indexInArray].price_by_night + '</div>\
+                        </div>\
+                        <div class="information">\
+                            <div class="max_guest">' + data[indexInArray].max_guest + a + '</div>\
+                            <div class="number_rooms">' + data[indexInArray].number_rooms + b + '</div>\
+                            <div class="number_bathrooms">' + data[indexInArray].number_bathrooms + c + '</div>\
+                        </div>\
+                        <div class="description">' + data[indexInArray].description + '</div>\
+                    </article>');
             });
         }
       });
