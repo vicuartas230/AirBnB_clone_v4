@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
   );
   $.ajax({
     type: 'POST',
-    url: 'http://172.27.63.229:5001/api/v1/places_search/',
+    url: 'http://0.0.0.0:5001/api/v1/places_search/',
     data: JSON.stringify({}),
     contentType: 'application/json',
     dataType: 'json',
@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
     $('section.places').empty();
     $.ajax({
       type: "POST",
-      url: "http://172.27.63.229:5001/api/v1/places_search/",
-      data: JSON.stringify({amenities: Object.keys(storeAmenity)}), 
+      url: "http://0.0.0.0:5001/api/v1/places_search/",
+      data: JSON.stringify({amenities: Object.keys(storeAmenity)}),
       contentType: "application/json",
       dataType: "json",
       success: function (data) {
